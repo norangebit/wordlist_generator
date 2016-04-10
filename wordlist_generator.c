@@ -15,21 +15,25 @@ typedef struct{
   char str[128];
 } String;
 
-FILE *string, *diz;
-
-int Inserimento();
-
 int main(){
+  char c;
   String info[INFO];
+  FILE *string, *diz;
   int mixa=0, i, j, h, r, g, f, e;
 
 
   //INSERIMENTO VALORI SUL FILE
-  if(!Inserimento()){
+  if((string=fopen("string", "w"))){
+    printf("Inserisci le informazioni sul sogetto: ");
+    do{
+      fputc((c=getchar()), string);
+    }while(c!=35);
+    fclose(string);
+  }else{
     printf("Si è verificato un errore.");
     return(0);
   }
-  
+
   //CONTROLLO SE L'UTENTE HA INSERITO VALORI NEGLI ARRAY
   string=fopen("string", "r");
   do{
@@ -85,17 +89,6 @@ int main(){
     }
   }
   fclose(diz);
-  printf("dizionario creato con successo, il nome del dizionario è dizionario.");
+  printf("Dizionario creato\n");
   return(0);
-}
-
-int Inserimento(){
-  char c;
-  string=fopen("string", "w");
-  printf("Inserisci informazioni(max %d) sul target separate da spazi.\nQuando hai terminato inserisci il cancelletto '#' e premi invio\nEsempio: franco rossi 1990 milan roberta #\n", INFO);
-  do{
-    fputc((c=getchar()), string);
-  }while(c!=35);
-  fclose(string);
-  return(string);
 }
