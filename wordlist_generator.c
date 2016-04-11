@@ -2,7 +2,7 @@
 ============================================================================
 Name        : GeneratoreDizionari.c
 Author      : Sh13n, Orange_dugongo
-Version     : alpha 0.1
+Version     : alpha 0.2
 Copyright   : CC BY-SA 3.0 IT
 Description : Generatore di dizionari in C
 ============================================================================
