@@ -2,7 +2,7 @@
 ============================================================================
 Name        : GeneratoreDizionari.c
 Author      : Sh13n, Orange_dugongo
-Version     : alpha 0.2
+Version     : alpha 0.3
 Copyright   : CC BY-SA 3.0 IT
 Description : Generatore di dizionari in C
 ============================================================================
@@ -10,14 +10,15 @@ Description : Generatore di dizionari in C
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <malloc.h>
 #define INFO 10
 
 typedef struct{
-  char str[128];
+  char *str;
 } String;
 
 int main(){
-  char c, s[]="Dizionario";
+  char c, s[]="Dizionario", buffer[200];
   String info[2*INFO];
   FILE *string, *diz;
   int mixa=0, i, j, h, r, g, f, e;
@@ -38,11 +39,15 @@ int main(){
   //CONTROLLO SE L'UTENTE HA INSERITO VALORI NEGLI ARRAY
   string=fopen("string", "r");
   do{
-    fscanf(string, "%s", info[mixa].str);
+    fscanf(string, "%s", buffer);
+    info[mixa].str=(char *)calloc(strlen(buffer)+1, sizeof(char));
+    strcpy(info[mixa].str, buffer);
+
     //se il primo carattere della stringa è alfabetico genero la stringa maiuscola
     if(isalpha(info[mixa].str[0])){
-      info[mixa+1]=info[mixa++];
-      info[mixa].str[0]=toupper(info[mixa].str[0]);
+      info[++mixa].str=(char *)calloc(strlen(buffer)+1, sizeof(char));
+      buffer[0]=toupper(buffer[0]);
+      strcpy(info[mixa].str, buffer);
     }
   }while (strcmp("#", info[mixa].str) && mixa++<INFO);
   fclose(string);
