@@ -33,6 +33,6 @@ int main(){
 
   Generazione(fopen(save, "w"), Load(src, buffer));
 
-  printf("Il Dizionario è stato creato con successo, il nome del destionario è %s.", save);
+  printf("Il Dizionario è stato creato con successo, il nome del dizionario è %s.", save);
   return(0);
 }
