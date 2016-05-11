@@ -2,7 +2,7 @@
 ============================================================================
 Name        : Generatoredestionari.c
 Author      : Sh13n, Orange_dugongo
-Version     : alpha 0.3
+Version     : alpha 0.4
 Copyright   : CC BY-SA 3.0 IT
 Description : Generatore di destionari in C
 ============================================================================
@@ -13,34 +13,30 @@ Description : Generatore di destionari in C
 #include <malloc.h>
 #define INFO 10
 
+int Inserisci(char *);
+
 typedef struct{
   char *str;
 } src;
 
 int main(){
-  char c, s[]="destionario", buffer[200];
+  char buffer[200], *save;
   src info[2*INFO];
   FILE *src, *dest;
-  int mixa=0, i, j, h, r, g, f, e;
+  int i, j, h, r, g, f, e, mixa=0;
 
   printf("Da quale file vuoi caricare i dati: ");
   scanf("%s", buffer);
-  //INSERIMENTO VALORI SUL FILE
-  if(!(src=fopen(buffer, "r"))){
-    printf("Il file indicato non esiste, ora verrà creato\n");
-    if((src=fopen(buffer, "w"))){
-      printf("Inserisci informazioni(max %d) sul target separate da spazi.\nQuando hai terminato inserisci il cancelletto '#' e premi invio\nEsempio: franco rossi 1990 milan roberta #\n", INFO);
-      do{
-        fputc(tolower((c=getchar())), src);
-      }while(c!=35);
-    }else{
-      printf("Si è verificato un errore.");
+
+  //LETTURA VALORI SUL FILE
+  if(!(src=fopen(buffer, "r")))
+    //INSERIMENTO VALORI SUL FILE
+    if(!Inserisci(buffer))
       return(0);
-    }
-  }
-  fclose(src);
+    else
+      src=fopen(buffer, "r");
+
   //CONTROLLO SE L'UTENTE HA INSERITO VALORI NEGLI ARRAY
-  src=fopen(buffer, "r");
   do{
     fscanf(src, "%s", buffer);
     info[mixa].str=(char *)calloc(strlen(buffer)+1, sizeof(char));
@@ -56,7 +52,12 @@ int main(){
   fclose(src);
 
   //APERTURA FILE
-  dest = fopen(s, "w");
+  printf("Su quali file vuoi salvare i dati: ");
+  scanf("%s", buffer);
+  save=(char *)calloc(strlen(buffer)+1, sizeof(char));
+  strcpy(save, buffer);
+  dest = fopen(save, "w");
+
   //INIZIO CICLO
   for(i=0;i<mixa;i++){
 
@@ -103,6 +104,23 @@ int main(){
     }
   }
   fclose(dest);
-  printf("destionario creato con successo, il nome del destionario è %s.", s);
+  printf("Il Dizionario è stato creato con successo, il nome del destionario è %s.", save);
   return(0);
+}
+
+int Inserisci(char *buffer){
+  char c;
+  FILE *src;
+  printf("Il file indicato non esiste, ora verrà creato\n");
+  if((src=fopen(buffer, "w"))){
+    printf("Inserisci informazioni(max %d) sul target separate da spazi.\nQuando hai terminato inserisci il cancelletto '#' e premi invio\nEsempio: franco rossi 1990 milan roberta #\n", INFO);
+    do{
+      fputc(tolower((c=getchar())), src);
+    }while(c!=35);
+  }else{
+    printf("Si è verificato un errore.");
+    return(0);
+  }
+  fclose(src);
+  return(1);
 }
