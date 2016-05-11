@@ -4,7 +4,7 @@ Name        : Generatoredestionari.c
 Author      : Sh13n, Orange_dugongo
 Version     : alpha 0.4
 Copyright   : CC BY-SA 3.0 IT
-Description : Generatore di destionari in C
+Description : Generatore di dizionari in C
 ============================================================================
  */
 #include <stdio.h>
