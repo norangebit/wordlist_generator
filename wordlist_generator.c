@@ -42,7 +42,7 @@ int main(){
     info[mixa].str=(char *)calloc(strlen(buffer)+1, sizeof(char));
     strcpy(info[mixa].str, buffer);
 
-    //se il primo carattere della srca è alfabetico genero la srca maiuscola
+    //se il primo carattere della stringa è alfabetico genero una nuova stringa con iniziale maiuscola
     if(isalpha(info[mixa].str[0])){
       info[++mixa].str=(char *)calloc(strlen(buffer)+1, sizeof(char));
       buffer[0]=toupper(buffer[0]);
