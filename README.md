@@ -31,6 +31,7 @@ Questo programma è stato realizzato a solo scopo didattico e dimostrativo. Quin
   - Caricamento da file.
   - Salvataggio personalizzato.
   - Aggiunto file header(Ora il codice è più facile da leggere).
+  - Nuova licenza: GPL v2.
 
 --------------------------------------------------------------------------------
 
@@ -55,6 +56,7 @@ Questo programma è stato realizzato a solo scopo didattico e dimostrativo. Quin
   - Loading from files.
   - Customized save.
   - Add header file.
+  - New license: GPL v2.
 
 --------------------------------------------------------------------------------
 
