@@ -27,7 +27,11 @@ This file is part of wordlist_generator.
    DEVE LEGGERE IL FILE 'wordlist_generator.c'.
 */
 
+
+
 #include "wordlist_generator.c"
+
+
 
 //LEGGE LE INFO DA TASTIERA E LE SALVA SU UN FILE
   /*  Prende in input una stringa, e crea un file di testo col nome della stringa.
