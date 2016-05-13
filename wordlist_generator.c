@@ -38,7 +38,7 @@ typedef struct{
   char *str;
 } Nodo;
 
-Nodo *info=(Nodo *)malloc(2*INFO*sizeof(Nodo));//L'array ha dimensioni 2*INFO perchè deve allocare anche lo spazio per la versione della parola con iniziale maiuscola.
+Nodo info[2*INFO];//L'array ha dimensioni 2*INFO perchè deve allocare anche lo spazio per la versione della parola con iniziale maiuscola.
 
 int Inserisci(char *buffer){
   char c;
@@ -74,7 +74,6 @@ int Load(FILE *src){
   }while (strcmp("#", info[mixa].str) && mixa++<INFO);
 
   fclose(src);
-  info=(Nodo *)realloc(info, mixa*sizeof(Nodo));
   return(mixa);
 }
 
