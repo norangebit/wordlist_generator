@@ -1,7 +1,7 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : alpha 0.4
+Version     : alpha 0.4.1
 Description : Generatore di dizionari in C
 ============================================================================
 Copyright (c) 2016 Sh13n, Orange_dugongo
@@ -39,7 +39,7 @@ int main(){
     else
       src=fopen(buffer, "r");//Nel caso si sia creato un nuovo file bisogna aprirlo in modalità lettura.
   //APERTURA FILE
-  printf("Su quali file vuoi salvare i dati: ");
+  printf("Su quale file vuoi salvare i dati: ");
   scanf("%s", buffer);
 
   Generazione(fopen(buffer, "w"), Load(src));//Per leggere il codice della funziona aprire il file 'wordlist_generator.c'
