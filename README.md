@@ -9,3 +9,60 @@ Semplice programma scritto in c e serve a generare dei dizionari. Il programma p
 ## Attenzione
 
 Questo programma è stato realizzato a solo scopo didattico e dimostrativo. Quindi gli autori declinano ogni **responsabilità** in seguito ad un eventuale uso non corretto del programma.
+
+## Changelog ITA
+
+- **Alpha 0.1**
+
+  - Release iniziale.
+
+- **Alpha 0.2**
+
+  - Riscritto il codice per una maggiore chiarezza.
+  - Gestione maiuscole e minuscole.
+
+- **Alpha 0.3**
+
+  - Gestione dinamica della memoria.
+  - Declinazione delle responsabilità.
+
+- **Alpha 0.4**
+
+  - Caricamento da file.
+  - Salvataggio personalizzato.
+  - Aggiunto file header(Ora il codice è più facile da leggere).
+  - Nuova licenza: GPL v2.
+
+--------------------------------------------------------------------------------
+
+## Changelog ENG
+
+- **Alpha 0.1**
+
+  - Initial release
+
+- **Alpha 0.2**
+
+  - Rewrote the code for greater clarity.
+  - Case sensitive management.
+
+- **Alpha 0.3**
+
+  - Dynamic management of memory.
+  - Declination of responsibilities.
+
+- **Alpha 0.4**
+
+  - Loading from files.
+  - Customized save.
+  - Add header file.
+  - New license: GPL v2.
+
+--------------------------------------------------------------------------------
+
+## Coming soon
+
+- ~~Dynamic management of memory.~~
+- ~~Loading from files~~
+- ~~Customized save~~
+- Menu
