@@ -1,3 +1,7 @@
+# ATTENZIONE
+
+Questa è una versione di prova. Se si vuole scaricare il programma si consiglia di tornare al ramo master.
+
 # Wordlist_Generator
 
 This is a simple program written in c for generate a wordlist.
