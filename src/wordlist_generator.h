@@ -1,7 +1,7 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : alpha 0.5
+Version     : beta 0.0.1
 Description : Generatore di dizionari in C
 ============================================================================
 Copyright (c) 2016 Sh13n, Orange_dugongo
