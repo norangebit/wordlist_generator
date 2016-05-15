@@ -1,6 +1,6 @@
 # ATTENZIONE
 
-Questa è una versione di prova. Se si vuole scaricare il programma si consiglia di tornare al ramo master.
+Questa versione è ancora sperimentale. Il software dovrebbe funzionare correttamente, ma qualche Bug potrebbe sempre verificarsi. Se si vuole usare una versione stabile si consiglia di tornare sul ramo master.
 
 # Wordlist_Generator
 
