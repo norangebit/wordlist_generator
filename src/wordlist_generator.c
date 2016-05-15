@@ -225,3 +225,28 @@ Soggetto *Search(Soggetto *head, char *nome, char *cnome){
   else
     return NULL;
 }
+
+void Quickly(char *str[], int mixa){
+  Soggetto New;
+  FILE *dest=fopen("diz.txt", "w");
+  int i;
+  for(i=1;i<mixa;i++){
+    New.info[i-1]=(char *)calloc(strlen(str[i])+1, sizeof(char));
+    strcpy(New.info[i-1], str[i]);
+
+    if(isalpha((str[i])[0])){
+      if(islower((str[i])[0]))
+        (str[i])[0]=toupper((str[i])[0]);
+      else
+        (str[i])[0]=tolower((str[i])[0]);
+
+      New.info[i]=(char *)calloc(strlen(str[i])+1, sizeof(char));
+      strcpy(New.info[i], str[i]);
+      mixa++;
+      i++;
+    }
+  }
+  New.mixa=mixa;
+  Generazione(dest, &New);
+  fclose(dest);
+}

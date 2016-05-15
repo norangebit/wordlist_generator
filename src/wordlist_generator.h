@@ -79,3 +79,10 @@ int Read(Soggetto **head, char *fname);
       funzione restituisce NULL.
   */
 Soggetto *Search(Soggetto *head, char *nome, char *cnome);
+
+
+//GENERA UN DIZIONARIO VELOCEMENTE
+  /*  La funzione acetta in input argv e argc e si occupa di generare un
+      dizionario senza interazione con l'utente.
+  */
+void Quickly(char *str[], int mixa);
