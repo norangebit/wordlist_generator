@@ -33,11 +33,6 @@ This file is part of wordlist_generator.
 #include <malloc.h>
 #define INFO 10 //Numero massimo di info accettate dal programma.
 
-//Creazione di un nuovo tipo definito di tipo struttura. Serve per greare un array di stringhe.
-typedef struct{
-  char *str;
-} Nodo;
-
 typedef struct Soggetto{
   char *nome;
   char *cnome;
@@ -45,45 +40,6 @@ typedef struct Soggetto{
   int mixa;
   struct Soggetto *next;
 } Soggetto;
-
-Nodo info[2*INFO];//L'array ha dimensioni 2*INFO perchè deve allocare anche lo spazio per la versione della parola con iniziale maiuscola.
-
-int Inserisci(char *buffer){
-  char c;
-  FILE *src;
-  printf("Il file indicato non esiste, ora verrà creato\n");
-  if((src=fopen(buffer, "w"))){
-    printf("Inserisci informazioni(max %d) sul target separate da spazi.\nQuando hai terminato inserisci il cancelletto '#' e premi invio\nEsempio: franco rossi 1990 milan roberta #\n", INFO);
-    do{
-      fputc(tolower((c=getchar())), src);
-    }while(c!=35);//Il 35 corrisponde all' '#' nel codice ASCII
-  }else{
-    printf("Si è verificato un errore.");
-    return(0);
-  }
-  fclose(src);
-  return(1);
-}
-
-int Load(FILE *src){
-  char buffer[200];
-  int mixa=0;
-  do{
-    fscanf(src, "%s", buffer);//Si salva la stringa in una variabile d'appoggio.
-    info[mixa].str=(char *)calloc(strlen(buffer)+1, sizeof(char));//si alloca lo spazio in memoria.
-    strcpy(info[mixa].str, buffer);//Copia la stringa nello spazio allocato.
-
-    //se il primo carattere della stringa è alfabetico genero una nuova stringa con iniziale maiuscola
-    if(isalpha(info[mixa].str[0])){
-      info[++mixa].str=(char *)calloc(strlen(buffer)+1, sizeof(char));
-      buffer[0]=toupper(buffer[0]);
-      strcpy(info[mixa].str, buffer);
-    }
-  }while (strcmp("#", info[mixa].str) && mixa++<INFO);
-
-  fclose(src);
-  return(mixa);
-}
 
 void Generazione(FILE *dest, Soggetto *x){
 
@@ -206,12 +162,12 @@ void Link(Soggetto *New, Soggetto **head){
   }
 }
 
-void Print(Soggetto *cur, char *fname){
+void Save(Soggetto *cur, char *fname){
   int i;
   FILE *dest=fopen(fname, "w");
   while(cur){
-    fprintf(dest, "%s %s # ", cur->nome, cur->cnome);
-    for(i=0;i<cur->mixa;i++)
+    fprintf(dest, "%s %s # ", cur->cnome, cur->nome);
+    for(i=0;i<(cur->mixa);i++)
       fprintf(dest, "%s ", cur->info[i]);
     fprintf(dest, "##\n");
 
@@ -230,12 +186,12 @@ int Read(Soggetto **head, char *fname){
   while(fscanf(src, "%s", buffer)!=EOF){
     mixa=0;
     Soggetto *New=(Soggetto *)malloc(sizeof(Soggetto));
-    New->nome=(char *)calloc(strlen(buffer)+1, sizeof(char));
-    strcpy(New->nome, buffer);
-
-    fscanf(src, "%s", buffer);
     New->cnome=(char *)calloc(strlen(buffer)+1, sizeof(char));
     strcpy(New->cnome, buffer);
+
+    fscanf(src, "%s", buffer);
+    New->nome=(char *)calloc(strlen(buffer)+1, sizeof(char));
+    strcpy(New->nome, buffer);
 
     fscanf(src, "%s", buffer);
     if(strcmp(buffer, "#"))
