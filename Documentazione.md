@@ -7,7 +7,7 @@ Questo software è in grado di funzionare in due modalità differenti:
 1. Modalità quickly
 2. Modalità standard
 
-### Modalità quickly
+### Modalità quickly(Ancora non funzionante)
 
 In questa modalità la generazione di un nuovo dizionario è resa il più facile e immediata possibile. L'utente dovrà eseguire da termilane il programma seguito dalla info sul soggetto.
 
@@ -19,7 +19,7 @@ Il software automaticamente provvederà a mixare tra di loro le varie stringhe e
 
 ### Modalità standard
 
-In questa modalità il software permette di gestire più _database_ di soggetti. Il file rappresentare un _database_ e ogni _database_ può essere salvato un numero illimitato di Soggetti. In questo modo si possono gestire più soggetti contemporaneamente a patto che siano salvati nello stesso file. Per avviare il programma in questa modalità basterà eseguire il programma senza l'aggiunta di altri argomenti.
+In questa modalità il software permette di gestire più _database_ di soggetti. Unfile rappresenta un _database_ e in ogni _database_ può essere salvato un numero illimitato di Soggetti. In questo modo si possono gestire più soggetti contemporaneamente a patto che siano salvati nello stesso file. Per avviare il programma in questa modalità basterà eseguire il programma senza l'aggiunta di altri argomenti.
 
 Una volta lanciato il programma in questa modalità il software chiederà all'utente quale file desidera caricare. L'utente per scegliere dovrà immettere il nome del file che desidera aprire. Se il file non esiste o è corrotto il programma restituirà un messaggio di errore. Il programma in automatico provvederà alla creazione del file e permetterà all'utente l'esecuzione del programma.
 
@@ -31,7 +31,9 @@ Dopo aver creato/aperto il file l'utente si troverà difronte al seguente menu:
 
 1. Aggiungi un nuovo soggetto.
 2. Crea dizionario.
-3. Salva ed esci.
+3. Stampa soggetti.
+4. Cerca.
+5. Salva ed esci.
 
 L'utente dovrà digitare il numero corrispondente alla propria scelta.
 
@@ -45,6 +47,16 @@ Scegliendo questa voce il programma chiederà all'utente di identificare l'utent
 
 **N.B.** Il file può anche non esistere, in quel caso il programma lo creerà in automatico.
 
+##### Stampa soggetti
+
+Selezionando questa voce il programma stamperà a video l'intero elenco di soggetti presenti nel _database_ attualmente in uso.
+
+**N.B.** il programma stampa solo l'elenco dei nomi e cognomi, le info su ogni soggetto vengono escluse.
+
+##### Cerca
+
+Selezionando questa voce il programma stamperà a video le info del soggetto cercato dall'utente.
+
 ##### Salva ed esci
 
 Scegliendo questa voce l'utente terminerà il programma e salverà le modifiche sul _database_ precedentemente aperto/creato.
@@ -57,4 +69,8 @@ Il _database_ è un semplice file di testo, per questo l'utente potrebbe editarl
 
 `Rossi Mario # mario Mario rossi Rossi 1985 roma Roma ##`
 
-L'utente potrebbe omettere la distinzione tra maiuscole e minuscole ma si sconsiglia di farlo in quanto si potrebbero perdere combinazioni preziose. Comunque l'importante e digitare prima il cognome e poi il nome separati da uno spazio, poi inserire il cancelletto, poi le info sempre separate da spazzi e infine un doppio cancelletto. Se non si formatta nel seguente modo il file potrebbe non essere caricato correttamente o risultare corrotto.
+L'utente potrebbe omettere la distinzione tra maiuscole e minuscole ma si sconsiglia di non farlo in quanto si potrebbero perdere combinazioni preziose. Comunque l'importante e digitare prima il cognome e poi il nome separati da uno spazio, poi inserire il cancelletto, poi le info sempre separate da spazzi e infine un doppio cancelletto. Se non si formatta nel seguente modo il file potrebbe non essere caricato correttamente o risultare corrotto.
+
+## License
+
+Questo file è rilasciato secondo i termini della licenza _Creative Commons_ [**BY-SA 3.0**](link)

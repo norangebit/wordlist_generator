@@ -1,7 +1,7 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : beta 0.0.1
+Version     : beta 0.0.2
 Description : Generatore di dizionari in C
 ============================================================================
 Copyright (c) 2016 Sh13n, Orange_dugongo
@@ -43,6 +43,8 @@ int main(int argc, char *argv[]){
       printf("\n-------------Menu-------------\n");
       printf("\n 1. Aggiungi un nuovo soggetto.");
       printf("\n 2. Crea dizionario.");
+      printf("\n 3. Stampa soggetti");
+      printf("\n 4. Cerca");
       printf("\n 0. Salva ed esci.\n");
       printf("\n Cosa vuoi fare: ");
       while(!scanf("%d", &n));
@@ -62,6 +64,17 @@ int main(int argc, char *argv[]){
                   Generazione(fopen(fdest, "w"), x);
                   printf("\nDizionario creato con successo.\n");
                 }else
+                  printf("\nIl soggetto inserito non esiste.\n");
+          break;
+        case 3: Print(head, "all");
+          break;
+        case 4: printf("Inserisci il nome del soggetto: ");
+                scanf("%s", name);
+                printf("Inserisci il cognome del soggetto: ");
+                scanf("%s", cname);
+                if((x=Search(head, name, cname)))
+                  Print(x, "once");
+                else
                   printf("\nIl soggetto inserito non esiste.\n");
           break;
         default: printf("Scelta non valida");

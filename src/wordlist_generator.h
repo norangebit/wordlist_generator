@@ -1,7 +1,7 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : beta 0.0.1
+Version     : beta 0.0.2
 Description : Generatore di dizionari in C
 ============================================================================
 Copyright (c) 2016 Sh13n, Orange_dugongo
@@ -86,3 +86,15 @@ Soggetto *Search(Soggetto *head, char *nome, char *cnome);
       dizionario senza interazione con l'utente.
   */
 void Quickly(char *str[], int mixa);
+
+
+//STAMAPA A VIDEO UNO O PIÙ UTENTI
+  /*  La funzione può operare in due modalità differenti.
+      MODALITÀ ONCE: stampa un unico soggetto con info incluse. Per accedere a
+      questa modalità inserire il puntatore al sogetto desiderato nel primo
+      campo e "once" nel secondo.
+      MODALITÀ ALL: stampa l'elenco di tutti i soggetti caricati nel database
+      per attivare questa modalità inserire il puntatore alla testa della lista
+      e nel secondo campo "all".
+  */
+void Print(Soggetto *head, char *mode);

@@ -1,7 +1,7 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : beta 0.0.1
+Version     : beta 0.0.2
 Description : Generatore di dizionari in C
 ============================================================================
 Copyright (c) 2016 Sh13n, Orange_dugongo
@@ -227,26 +227,39 @@ Soggetto *Search(Soggetto *head, char *nome, char *cnome){
 }
 
 void Quickly(char *str[], int mixa){
-  Soggetto New;
+  Soggetto *New=(Soggetto *)malloc(sizeof(Soggetto));
   FILE *dest=fopen("diz.txt", "w");
   int i;
-  for(i=1;i<mixa;i++){
-    New.info[i-1]=(char *)calloc(strlen(str[i])+1, sizeof(char));
-    strcpy(New.info[i-1], str[i]);
-
-    if(isalpha((str[i])[0])){
-      if(islower((str[i])[0]))
-        (str[i])[0]=toupper((str[i])[0]);
+  for(i=1;i<mixa && mixa<9;i++){
+    New->info[i-1]=(char *)calloc(strlen(str[i])+1, sizeof(char));
+    strcpy(New->info[i-1], str[i]);
+    if(isalpha(New->info[i][0])){
+      New->info[i]=(char *)calloc(strlen(str[i])+1, sizeof(char));
+      strcpy(New->info[i], str[i]);
+      if(isupper(New->info[i][0]))
+        New->info[i][0]=tolower(New->info[i][0]);
       else
-        (str[i])[0]=tolower((str[i])[0]);
-
-      New.info[i]=(char *)calloc(strlen(str[i])+1, sizeof(char));
-      strcpy(New.info[i], str[i]);
-      mixa++;
+        New->info[i][0]=toupper(New->info[i][0]);
       i++;
+      mixa++;
     }
+
   }
-  New.mixa=mixa;
-  Generazione(dest, &New);
+  New->mixa=--mixa;
+  Generazione(dest, New);
   fclose(dest);
+}
+
+void Print(Soggetto *head, char *mode){
+  int i;
+  if(!strcmp(mode, "all"))
+    while(head){
+      printf("%s %s\n", head->cnome, head->nome);
+      head=head->next;
+    }
+  else{
+    printf("\n%s %s: ", head->cnome, head->nome);
+    for(i=0;i<head->mixa;i++)
+      i==0?printf("%s", head->info[i]):printf(", %s", head->info[i]);
+  }
 }
