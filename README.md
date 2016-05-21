@@ -40,14 +40,14 @@ Questo programma è stato realizzato a solo scopo didattico e dimostrativo. Quin
 - **Beta 0.1**
 
   - Programma riscritto da zero.
-  - **0.1.0**
+  - **0.1.1**
 
     - Menu.
     - Modalità standard.
     - Gestione di più soggetti contemporaneamente.
     - Possibilità di salvare soggetti e info in _database_.
 
-  - **0.1.1**
+  - **0.1.2**
 
     - Aggiunta funzione stampa.
     - Aggiunta funzione cerca.
