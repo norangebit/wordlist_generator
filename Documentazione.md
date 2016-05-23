@@ -7,7 +7,7 @@ Questo software è in grado di funzionare in due modalità differenti:
 1. Modalità quickly
 2. Modalità standard
 
-### Modalità quickly(Ancora non funzionante)
+### Modalità quickly
 
 In questa modalità la generazione di un nuovo dizionario è resa il più facile e immediata possibile. L'utente dovrà eseguire da termilane il programma seguito dalla info sul soggetto.
 
@@ -16,6 +16,10 @@ In questa modalità la generazione di un nuovo dizionario è resa il più facile
 `./main mario rossi 1985 roma`
 
 Il software automaticamente provvederà a mixare tra di loro le varie stringhe e a salvare il dizionario così creato nel file _"diz.txt"_.
+
+**N.B.** In questa modalità il programma non genera in automatico la stringa con iniziale nel caso inverso. Se le info sul soggetto sono: {mario, rossi 85} e si desidera ottenere anche la combinazione 'Mario85Rossi' le info vanno inserite nel seguente modo:
+
+`./Main mario Mario rossi Rossi 85`
 
 ### Modalità standard
 
@@ -33,7 +37,8 @@ Dopo aver creato/aperto il file l'utente si troverà difronte al seguente menu:
 2. Crea dizionario.
 3. Stampa soggetti.
 4. Cerca.
-5. Salva ed esci.
+5. Elimina.
+6. Salva ed esci.
 
 L'utente dovrà digitare il numero corrispondente alla propria scelta.
 
@@ -57,6 +62,10 @@ Selezionando questa voce il programma stamperà a video l'intero elenco di sogge
 
 Selezionando questa voce il programma stamperà a video le info del soggetto cercato dall'utente.
 
+##### Elimina
+
+Selezionando questa voce l'utente postra eliminare dal database l'utente idicato.
+
 ##### Salva ed esci
 
 Scegliendo questa voce l'utente terminerà il programma e salverà le modifiche sul _database_ precedentemente aperto/creato.
@@ -73,4 +82,4 @@ L'utente potrebbe omettere la distinzione tra maiuscole e minuscole ma si sconsi
 
 ## License
 
-Questo file è rilasciato secondo i termini della licenza _Creative Commons_ [**BY-SA 3.0**](link)
+Questo documento è rilasciato secondo i termini della licenza _Creative Commons_ [**BY-SA 3.0**](link), Copyright (C) 2016 Orange_dugongo.
