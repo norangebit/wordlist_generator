@@ -1,9 +1,10 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : beta 0.0.2
+Version     : beta 0.0.3
 Description : Generatore di dizionari in C
 ============================================================================
+
 Copyright (c) 2016 Sh13n, Orange_dugongo
 
 This file is part of wordlist_generator.
@@ -75,8 +76,9 @@ int Read(Soggetto **head, char *fname);
 //CERCA UN SOGGETTO NELLA LISTA
   /*  La funzione accetta in input il puntatore alla testa della lista, il nome
       e il cognome del soggetto. La funzione restituisce il puntatore al
-      soggetto ricercato. Nel caso in cui non si verifichi nessun match la
-      funzione restituisce NULL.
+      soggetto ricercato.
+      Nel caso in cui non si verifichi nessun match la funzione restituisce
+      NULL.
   */
 Soggetto *Search(Soggetto *head, char *nome, char *cnome);
 
@@ -84,6 +86,8 @@ Soggetto *Search(Soggetto *head, char *nome, char *cnome);
 //GENERA UN DIZIONARIO VELOCEMENTE
   /*  La funzione acetta in input argv e argc e si occupa di generare un
       dizionario senza interazione con l'utente.
+      La funzione non creerà in automatico la stringa con iniziale nel caso
+      inverso.
   */
 void Quickly(char *str[], int mixa);
 
@@ -98,3 +102,10 @@ void Quickly(char *str[], int mixa);
       e nel secondo campo "all".
   */
 void Print(Soggetto *head, char *mode);
+
+
+//ELIMINA UN SOGGETTO DAL DATABASE
+  /*  La funzione prende in input il puntatore alla testa della lista, il nome
+      e il cognome del soggetto da eliminare.
+  */
+void Delete(Soggetto **HEAD, char *cname, char *name);

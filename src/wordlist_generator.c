@@ -1,9 +1,10 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : beta 0.0.2
+Version     : beta 0.0.3
 Description : Generatore di dizionari in C
 ============================================================================
+
 Copyright (c) 2016 Sh13n, Orange_dugongo
 
 This file is part of wordlist_generator.
@@ -227,26 +228,53 @@ Soggetto *Search(Soggetto *head, char *nome, char *cnome){
 }
 
 void Quickly(char *str[], int mixa){
-  Soggetto *New=(Soggetto *)malloc(sizeof(Soggetto));
   FILE *dest=fopen("diz.txt", "w");
-  int i;
-  for(i=1;i<mixa && mixa<9;i++){
-    New->info[i-1]=(char *)calloc(strlen(str[i])+1, sizeof(char));
-    strcpy(New->info[i-1], str[i]);
-    if(isalpha(New->info[i][0])){
-      New->info[i]=(char *)calloc(strlen(str[i])+1, sizeof(char));
-      strcpy(New->info[i], str[i]);
-      if(isupper(New->info[i][0]))
-        New->info[i][0]=tolower(New->info[i][0]);
-      else
-        New->info[i][0]=toupper(New->info[i][0]);
-      i++;
-      mixa++;
-    }
+  int i, j, h, r, g, f, e;
+  //INIZIO CICLO
+  for(i=1;i<mixa;i++){
 
+    //SECONDO CICLO
+    for(j=1;j<mixa;j++){
+      if(!strcasecmp(str[i], str[j]))//Se le due stringhe sono uguali si esegue uno skip. Lo stesso avviene per ogni nuovo ciclo.
+        continue;
+      fprintf(dest, "%s%s\n", str[i], str[j]);
+
+      //TERZO CICLO
+      for(h=1;h<mixa;h++){
+        if(!strcasecmp(str[i], str[h]) || !strcasecmp(str[j], str[h]))
+          continue;
+        fprintf(dest, "%s%s%s\n", str[i], str[j], str[h]);
+
+        //QUARTO CICLO
+        for(r=1;r<mixa;r++){
+          if(!strcasecmp(str[i], str[r]) || !strcasecmp(str[j], str[r]) || !strcasecmp(str[h], str[r]))
+            continue;
+          fprintf(dest, "%s%s%s%s\n", str[i], str[j], str[h], str[r]);
+
+          //QUINTO CICLO
+          for(g=1;g<mixa;g++){
+            if(!strcasecmp(str[i], str[g]) || !strcasecmp(str[j], str[g]) || !strcasecmp(str[h], str[g]) || !strcasecmp(str[r], str[g]))
+              continue;
+            fprintf(dest, "%s%s%s%s%s\n", str[i], str[j], str[h], str[r], str[g]);
+
+            //SESTO CICLO
+            for(f=1;f<mixa;f++){
+              if(!strcasecmp(str[i], str[f]) || !strcasecmp(str[j], str[f]) || !strcasecmp(str[h], str[f]) || !strcasecmp(str[r], str[f]) || !strcasecmp(str[g], str[f]))
+                continue;
+              fprintf(dest, "%s%s%s%s%s%s\n", str[i], str[j], str[h], str[r], str[g], str[f]);
+
+              //SETTIMO CICLO
+              for(e=1;e<mixa;e++){
+                if(!strcasecmp(str[i], str[e]) || !strcasecmp(str[j], str[e]) || !strcasecmp(str[h], str[e]) || !strcasecmp(str[r], str[e]) || !strcasecmp(str[g], str[e]) || !strcasecmp(str[f], str[e]))
+                  continue;
+                fprintf(dest, "%s%s%s%s%s%s%s\n", str[i], str[j], str[h], str[r], str[g], str[f], str[e]);
+              }
+            }
+          }
+        }
+      }
+    }
   }
-  New->mixa=--mixa;
-  Generazione(dest, New);
   fclose(dest);
 }
 
@@ -262,4 +290,33 @@ void Print(Soggetto *head, char *mode){
     for(i=0;i<head->mixa;i++)
       i==0?printf("%s", head->info[i]):printf(", %s", head->info[i]);
   }
+}
+
+void Delete(Soggetto **head, char *cname, char *name){
+  int i;
+  Soggetto *cur=*head, *pre=NULL;
+  while(cur && strcmp(cname, cur->cnome)>0){
+    pre=cur;
+    cur=cur->next;
+  }
+  if(cur && !strcmp(cur->cnome, cname))
+    while(cur && strcmp(name, cur->nome)>0){
+      pre=cur;
+      cur=cur->next;
+    }
+
+  if(cur && !strcmp(cur->nome, name)){
+    if(!pre)
+      *head=cur->next;
+    else
+      pre->next=cur->next;
+
+    for(i=0;i<cur->mixa;i++)
+      free(cur->info[i]);
+
+    free(cur->nome);
+    free(cur->cnome);
+    free(cur);
+  }else
+    printf("Il soggetto inserito non esiste.\n");
 }
