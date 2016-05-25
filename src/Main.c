@@ -1,7 +1,7 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : beta 0.0.4
+Version     : beta 0.1
 Description : Generatore di dizionari in C
 ============================================================================
 

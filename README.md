@@ -1,7 +1,3 @@
-# ATTENZIONE
-
-Questa versione è ancora sperimentale. Il software dovrebbe funzionare correttamente, ma qualche Bug potrebbe sempre verificarsi. Se si vuole usare una versione stabile si consiglia di tornare sul ramo master.
-
 # Wordlist_Generator
 
 This is a simple program written in c for generate a wordlist.
@@ -63,6 +59,11 @@ Questo programma è stato realizzato a solo scopo didattico e dimostrativo. Quin
     - Aggiunta funzione anagrafica.
     - Bug fix.
 
+- **Beta 0.1**
+
+  - Menu.
+  - Quickly.
+
 --------------------------------------------------------------------------------
 
 ## Changelog ENG
@@ -88,11 +89,16 @@ Questo programma è stato realizzato a solo scopo didattico e dimostrativo. Quin
   - Add header file.
   - New license: GPL v2.
 
+- **Beta 0.1**
+
+  - Menu.
+  - Quickly.
+
 --------------------------------------------------------------------------------
 
 ## Coming soon
 
 - ~~Dynamic management of memory.~~
-- ~~Loading from files~~
-- ~~Customized save~~
-- Menu
+- ~~Loading from files.~~
+- ~~Customized save.~~
+- ~~Menu.~~
