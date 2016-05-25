@@ -1,7 +1,7 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : beta 0.0.3
+Version     : beta 0.0.4
 Description : Generatore di dizionari in C
 ============================================================================
 
@@ -99,29 +99,28 @@ Soggetto *NewS(){
   Soggetto *New=(Soggetto *)malloc(sizeof(Soggetto));
   printf("Inserisci il nome del sogetto: ");
   scanf("%s", buffer);
-  New->nome=(char *)calloc(strlen(buffer)+1, sizeof(char));
-  strcpy(New->nome, buffer);
+  New->nome=(char *)calloc(strlen(buffer)+1, sizeof(char));//Alloco lo spazio in memoria
+  strcpy(New->nome, buffer);//Copia la stringa
 
   printf("Inserisci il cognome del sogetto: ");
   scanf("%s", buffer);
-  New->cnome=(char *)calloc(strlen(buffer)+1, sizeof(char));
-  strcpy(New->cnome, buffer);
+  New->cnome=(char *)calloc(strlen(buffer)+1, sizeof(char));//Alloco lo spazio
+  strcpy(New->cnome, buffer);//copia della stringa
   printf("Inserisci le info sul sogetto. \"#\" per terminare: ");
-  mixa=0;
   scanf("%s", buffer);
   while(strcmp(buffer, "#") && mixa<INFO){
 
-    New->info[mixa]=(char *)calloc(strlen(buffer)+1, sizeof(char));
-    strcpy(New->info[mixa++], buffer);
+    New->info[mixa]=(char *)calloc(strlen(buffer)+1, sizeof(char));//Alloco lo spazio in memoria
+    strcpy(New->info[mixa++], buffer);//Copia della stringa
 
-    if(isalpha(buffer[0])){
+    if(isalpha(buffer[0])){//Genera la stringa con l'iniziale nel caso inverso
       if(islower(buffer[0]))
         buffer[0]=toupper(buffer[0]);
       else
         buffer[0]=tolower(buffer[0]);
 
-      New->info[mixa]=(char *)calloc(strlen(buffer)+1, sizeof(char));
-      strcpy(New->info[mixa++], buffer);
+      New->info[mixa]=(char *)calloc(strlen(buffer)+1, sizeof(char));//Alloco lo spazio in memoria
+      strcpy(New->info[mixa++], buffer);//Copia della stringa
     }
     scanf("%s", buffer);
   }
@@ -132,16 +131,16 @@ Soggetto *NewS(){
 void Link(Soggetto *New, Soggetto **head){
   int i;
   Soggetto *cur=*head, *pre=NULL;
-  while(cur && strcmp(cur->cnome, New->cnome)<0){
+  while(cur && strcmp(cur->cnome, New->cnome)<0){//Scorre la lista controllando il cognome
     pre=cur;
     cur=cur->next;
   }
-  if(cur && !strcmp(cur->cnome, New->cnome))
+  if(cur && !strcmp(cur->cnome, New->cnome))//Scorre la lista controllando il nome
     while(cur && strcmp(New->nome, cur->nome)>0){
       pre=cur;
       cur=cur->next;
     }
-  if(cur && !strcmp(New->nome, cur->nome)){
+  if(cur && !strcmp(New->nome, cur->nome)){//Se i due soggetti sono omonimi il vecchio viene sostituito dal nuovo
     if(!pre){
       New->next=cur->next;
       *head=New;
@@ -149,15 +148,15 @@ void Link(Soggetto *New, Soggetto **head){
       New->next=cur->next;
       pre->next=New;
     }
-    for(i=0;i<cur->mixa;i++)
+    for(i=0;i<cur->mixa;i++)//Viene deallocato lo spazio in memoria
       free(cur->info[i]);
     free(cur->nome);
     free(cur->cnome);
     free(cur);
-  }else if(!pre){
+  }else if(!pre){//inserimento in testa
     New->next=*head;
     *head=New;
-  }else{
+  }else{//inserimento nel mezzo o in coda
     New->next=cur;
     pre->next=New;
   }
@@ -182,7 +181,7 @@ int Read(Soggetto **head, char *fname){
   char buffer[200];
 
   if(!(src=fopen(fname, "r")))
-    return 0;
+    return -1;
 
   while(fscanf(src, "%s", buffer)!=EOF){
     mixa=0;
@@ -191,11 +190,11 @@ int Read(Soggetto **head, char *fname){
     strcpy(New->cnome, buffer);
 
     fscanf(src, "%s", buffer);
-    New->nome=(char *)calloc(strlen(buffer)+1, sizeof(char));
-    strcpy(New->nome, buffer);
+    New->nome=(char *)calloc(strlen(buffer)+1, sizeof(char));//Alloca spazio in memoria
+    strcpy(New->nome, buffer);//Copia la stringa
 
     fscanf(src, "%s", buffer);
-    if(strcmp(buffer, "#"))
+    if(strcmp(buffer, "#"))//Lettura carattere di controllo
       return 0;
 
     fscanf(src, "%s", buffer);
@@ -212,16 +211,16 @@ int Read(Soggetto **head, char *fname){
 
 Soggetto *Search(Soggetto *head, char *nome, char *cnome){
   Soggetto *cur=head, *pre=NULL;
-  while(cur && strcmp(cnome, cur->cnome)>0){
+  while(cur && strcmp(cnome, cur->cnome)>0){//Scorre la lista in base al cognome
     pre=cur;
     cur=cur->next;
   }
-  if(cur && !strcmp(cur->cnome, cnome))
+  if(cur && !strcmp(cur->cnome, cnome))//Scorre la lista in base al nome
     while(cur && strcmp(nome, cur->nome)>0){
       pre=cur;
       cur=cur->next;
     }
-  if(cur && !strcmp(nome, cur->nome) && !strcmp(cnome, cur->cnome))
+  if(cur && !strcmp(nome, cur->nome) && !strcmp(cnome, cur->cnome))//Se il soggetto cercato esiste
     return cur;
   else
     return NULL;
@@ -280,12 +279,12 @@ void Quickly(char *str[], int mixa){
 
 void Print(Soggetto *head, char *mode){
   int i;
-  if(!strcmp(mode, "all"))
+  if(!strcmp(mode, "all"))//Stampa dell'intero elenco dei soggetti
     while(head){
       printf("%s %s\n", head->cnome, head->nome);
       head=head->next;
     }
-  else{
+  else{//Stampa di un unico soggetto
     printf("\n%s %s: ", head->cnome, head->nome);
     for(i=0;i<head->mixa;i++)
       i==0?printf("%s", head->info[i]):printf(", %s", head->info[i]);
@@ -295,22 +294,23 @@ void Print(Soggetto *head, char *mode){
 void Delete(Soggetto **head, char *cname, char *name){
   int i;
   Soggetto *cur=*head, *pre=NULL;
-  while(cur && strcmp(cname, cur->cnome)>0){
+  while(cur && strcmp(cname, cur->cnome)>0){//Scorre la lista in base al cognome
     pre=cur;
     cur=cur->next;
   }
-  if(cur && !strcmp(cur->cnome, cname))
+  if(cur && !strcmp(cur->cnome, cname))//Scorre la lista in base al nome
     while(cur && strcmp(name, cur->nome)>0){
       pre=cur;
       cur=cur->next;
     }
 
   if(cur && !strcmp(cur->nome, name)){
-    if(!pre)
+    if(!pre)//eliminazione in testa
       *head=cur->next;
-    else
+    else//eliminazione in coda o nel mezzo
       pre->next=cur->next;
 
+    //dealloca lo spazio in memoria
     for(i=0;i<cur->mixa;i++)
       free(cur->info[i]);
 
@@ -319,4 +319,11 @@ void Delete(Soggetto **head, char *cname, char *name){
     free(cur);
   }else
     printf("Il soggetto inserito non esiste.\n");
+}
+
+void Anagrafica(char *name, char *cname){
+  printf("Inserisci il nome del soggetto: ");
+  scanf("%s", name);
+  printf("Inserisci il cognome del soggetto: ");
+  scanf("%s", cname);
 }

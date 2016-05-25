@@ -58,6 +58,11 @@ Questo programma è stato realizzato a solo scopo didattico e dimostrativo. Quin
     - Aggiunta funzione elimina.
     - Modalità Quickly.
 
+  - **0.0.4**
+
+    - Aggiunta funzione anagrafica.
+    - Bug fix.
+
 --------------------------------------------------------------------------------
 
 ## Changelog ENG

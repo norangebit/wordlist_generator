@@ -1,7 +1,7 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : beta 0.0.3
+Version     : beta 0.0.4
 Description : Generatore di dizionari in C
 ============================================================================
 
@@ -27,15 +27,17 @@ This file is part of wordlist_generator.
 
 int main(int argc, char *argv[]){
   char fname[200], name[200], cname[200], fdest[200];
-  int n;
+  int n, r;
   Soggetto *head=NULL, *x;
   if(argc>1)
     Quickly(argv, argc);//Not Work
   else{
     printf("Quale file vuoi caricare: ");
     scanf("%s", fname);
-    if(Read(&head, fname))
+    if((r=Read(&head, fname)) && r>0)
       printf("File caricato correttamente\n");
+    else if(r<0)
+      printf("Nuovo file creato\n");
     else{
       printf("ERRORE\nImpossibile caricare correttamente il file\n");
       head=NULL;
@@ -49,17 +51,13 @@ int main(int argc, char *argv[]){
       printf("\n 5. Elimina.");
       printf("\n 0. Salva ed esci.\n");
       printf("\n Cosa vuoi fare: ");
-      while(!scanf("%d", &n));
 
       switch(n){
         case 0: Save(head, fname);
           break;
         case 1: Link(NewS(), &head);
           break;
-        case 2: printf("Inserisci il nome del soggetto: ");
-                scanf("%s", name);
-                printf("Inserisci il cognome del soggetto: ");
-                scanf("%s", cname);
+        case 2: Anagrafica(name, cname);
                 printf("Su quale file vuoi salvare il dizionario: ");
                 scanf("%s", fdest);
                 if((x=Search(head, name, cname))){
@@ -70,21 +68,14 @@ int main(int argc, char *argv[]){
           break;
         case 3: Print(head, "all");
           break;
-        case 4: printf("Inserisci il nome del soggetto: ");
-                scanf("%s", name);
-                printf("Inserisci il cognome del soggetto: ");
-                scanf("%s", cname);
+        case 4: Anagrafica(name, cname);
                 if((x=Search(head, name, cname)))
                   Print(x, "once");
                 else
                   printf("\nIl soggetto inserito non esiste.\n");
           break;
-        case 5: printf("Inserisci il nome del soggetto: ");
-                scanf("%s", name);
-                printf("Inserisci il cognome del soggetto: ");
-                scanf("%s", cname);
+        case 5: Anagrafica(name, cname);
                 Delete(&head, cname, name);
-
           break;
         default: printf("Scelta non valida");
       }

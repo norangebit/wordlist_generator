@@ -1,7 +1,7 @@
 /*
 ============================================================================
 Name        : Generatoredestionari.c
-Version     : beta 0.0.3
+Version     : beta 0.0.4
 Description : Generatore di dizionari in C
 ============================================================================
 
@@ -67,8 +67,8 @@ void Save(Soggetto *head, char *fname);
 //LEGGE DA FILE UNA LISTA DI SOGGETTI E LA CARICA IN MEMORIA
   /*  La funzione accetta in input il puntatore al puntatore(doppio puntatore)
       alla testa della lista e il nome del file da cui si vuole leggere.
-      La funzione restituisce 0 in caso di errori di lettura e 1 se il
-      procedimento è andato a buon fine.
+      La funzione restituisce 0 in caso di errori di lettura, 1 se la lettura è
+      andata a buon fine e -1 se il file selezionato dall'utente non esiste.
   */
 int Read(Soggetto **head, char *fname);
 
@@ -109,3 +109,9 @@ void Print(Soggetto *head, char *mode);
       e il cognome del soggetto da eliminare.
   */
 void Delete(Soggetto **HEAD, char *cname, char *name);
+
+
+//CHIEDE IL COGNOME E IL NOME DI UN SOGGETTO
+  /* La funzione accetta in input due stringhe.
+  */
+void Anagrafica(char *name, char *cname);
